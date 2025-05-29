@@ -19,5 +19,9 @@ const OPEN_SKY_BASE = 'https://opensky-network.org/api/states/all';
 // 3) (Optional) public CORS proxy for testing only
 const PROXY_URL = 'https://cors-anywhere.herokuapp.com/';
 
+// in config.js
+const AVIATIONSTACK_KEY = '4e4ee0af150cc3da3309ff29b2e8c69d';
+
+
 // 4) Poll interval (ms)
 const POLL_INTERVAL = 10_000;
