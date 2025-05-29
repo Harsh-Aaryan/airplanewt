@@ -1,3 +1,5 @@
+// js/map-init.js
+
 let map, canvas;
 
 function initMap() {
@@ -14,30 +16,29 @@ function setCity(idx) {
   if (!map) {
     // 1) Initialize Leaflet
     map = L.map('map', { zoomControl: false }).setView(center, 11);
-    // 2) Add Carto Dark tiles
     L.tileLayer(
       'https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png',
       {
         attribution:
-          '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; CARTO',
+          '&copy; OpenStreetMap contributors &copy; CARTO',
       }
     ).addTo(map);
 
-    // 3) Create Paper.js canvas overlay
+    // 2) Create Paper.js canvas overlay
     canvas = document.createElement('canvas');
     canvas.id = 'paperCanvas';
     document.getElementById('map').appendChild(canvas);
     paper.setup(canvas);
 
-    // 4) Keep canvas matched to map size
+    // 3) Keep canvas sized to map viewport
     map.on('move zoom resize', resizeCanvas);
     resizeCanvas();
 
-    // 5) Start flight polling
-    startFlightUpdates();
+    // 4) Kick off the static animation
+    startFlightAnimation();
   }
 
-  // 6) Fit map to the city bbox
+  // 5) Fit to city bounding box (optional, for context)
   map.fitBounds([
     [city.bbox[0], city.bbox[2]], // south, west
     [city.bbox[1], city.bbox[3]], // north, east

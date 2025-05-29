@@ -1,4 +1,6 @@
-// 1) Define the cities you want and their [south,north,west,east] bbox.
+// js/config.js
+
+// Your existing cities array:
 const cities = [
   {
     name: 'Chicago',
@@ -10,18 +12,36 @@ const cities = [
     center: { lat: 40.7128, lng: -74.0060 },
     bbox: [40.5, 41.0, -74.3, -73.7],
   },
-  // …add more as needed
+  // …add more if you like
 ];
 
-// 2) OpenSky API endpoint
-const OPEN_SKY_BASE = 'https://opensky-network.org/api/states/all';
+// How often (ms) we advance each plane along its path
+const STEP_INTERVAL = 500;
 
-// 3) (Optional) public CORS proxy for testing only
-const PROXY_URL = 'https://cors-anywhere.herokuapp.com/';
-
-// in config.js
-const AVIATIONSTACK_KEY = '4e4ee0af150cc3da3309ff29b2e8c69d';
-
-
-// 4) Poll interval (ms)
-const POLL_INTERVAL = 10_000;
+// Here are two example “old” flight tracks. Each has an ID, a callsign,
+// and a path of [lat, lon] waypoints. We’ll loop each path forever.
+const sampleFlights = [
+  {
+    id: 'flight1',
+    callsign: 'ABC123',
+    path: [
+      [41.8781, -87.6298],
+      [42.0000, -87.0000],
+      [42.2000, -86.5000],
+      [42.5000, -85.5000],
+      [42.7000, -85.0000],
+    ],
+  },
+  {
+    id: 'flight2',
+    callsign: 'XYZ789',
+    path: [
+      [41.8000, -87.8000],
+      [41.8500, -87.6000],
+      [41.9000, -87.4000],
+      [41.9500, -87.6000],
+      [41.9000, -87.8000],
+      [41.8500, -88.0000],
+    ],
+  },
+];
