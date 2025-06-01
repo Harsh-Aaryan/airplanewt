@@ -41,7 +41,8 @@ function setCity(idx) {
   // 5) Fit to city bounding box (optional, for context)
   map.fitBounds([
     [city.bbox[0], city.bbox[2]], // south, west
-    [city.bbox[1], city.bbox[3]], // north, east
+    [city.bbox[1], city.bbox[3]], // north, ea
+    // st
   ]);
 }
 
