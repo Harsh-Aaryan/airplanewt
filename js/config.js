@@ -1,4 +1,6 @@
-// 1) Define the cities you want and their [south,north,west,east] bbox.
+// js/config.js
+
+// Your existing cities array:
 const cities = [
   {
     name: 'Chicago',
@@ -10,18 +12,26 @@ const cities = [
     center: { lat: 40.7128, lng: -74.0060 },
     bbox: [40.5, 41.0, -74.3, -73.7],
   },
-  // …add more as needed
+  // …add more if you like
 ];
 
-// 2) OpenSky API endpoint
-const OPEN_SKY_BASE = 'https://opensky-network.org/api/states/all';
+// How often (ms) we update flight positions
+const STEP_INTERVAL = 5000; // Update every 5 seconds
 
-// 3) (Optional) public CORS proxy for testing only
-const PROXY_URL = 'https://cors-anywhere.herokuapp.com/';
+// OpenSky API configuration
+const OPENSKY_API = {
+  baseUrl: 'https://opensky-network.org/api',
+  // Using anonymous access (limited to 400 requests per day)
+  // For more requests, you can register at https://opensky-network.org/
+  credentials: {
+    username: '',
+    password: ''
+  }
+};
 
-// in config.js
-const AVIATIONSTACK_KEY = '4e4ee0af150cc3da3309ff29b2e8c69d';
+// Flight data storage
+let activeFlights = new Map();
 
-
-// 4) Poll interval (ms)
-const POLL_INTERVAL = 10_000;
+// Expose configuration
+window.OPENSKY_API = OPENSKY_API;
+window.activeFlights = activeFlights;
