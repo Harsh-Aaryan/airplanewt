@@ -20,3 +20,10 @@ html, body, #map {
   pointer-events: none;
   font-size: 0.9em;
 }
+#paperCanvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  z-index: 400;
+}
